@@ -1,3 +1,4 @@
+// src/Components/Navbar.jsx
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
@@ -18,7 +19,10 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg sticky-top" style={{ backgroundColor: "#000" }}>
+    <nav
+      className="navbar navbar-expand-lg sticky-top"
+      style={{ backgroundColor: "#000" }}
+    >
       <div className="container d-flex align-items-center justify-content-between">
         {/* Brand / Logo */}
         <NavLink className="navbar-brand d-flex align-items-center" to="/">
@@ -55,30 +59,42 @@ export default function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" style={{ filter: "invert(1)" }}></span>
+          <span
+            className="navbar-toggler-icon"
+            style={{ filter: "invert(1)" }}
+          ></span>
         </button>
 
         {/* Menu */}
         <div className="collapse navbar-collapse" id="navMenu">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             {[
-              ["Home", "/#home", true],          // scroll
-              ["Models", "/#models", true],      // scroll
-              ["Features", "/features", false],  // ✅ page link
-              ["About Us", "/#about", true],     // scroll
+              ["Home", "/#home", true], // scroll
+              ["About", "/#about", true], // scroll
+              ["Features", "/features", false], // page
+              ["Models", "/#models", true], // scroll
               ["How It Works", "/how-it-works", false], // page
-              ["Gallery", "/gallery", false],    // page
-              ["Contact", "/contact", false],    // page
+              ["Gallery", "/gallery", false], // page
+              ["Contact", "/contact", false], // page
             ].map(([label, href, isHash]) => (
               <li className="nav-item" key={href}>
                 {isHash ? (
-                  <HashLink smooth to={href} style={linkStyle} className="nav-link">
+                  <HashLink
+                    smooth
+                    to={href}
+                    style={linkStyle}
+                    className="nav-link"
+                  >
                     {label}
                   </HashLink>
                 ) : (
                   <NavLink
                     to={href}
-                    style={({ isActive }) => (isActive ? { ...linkStyle, ...activeLinkStyle } : linkStyle)}
+                    style={({ isActive }) =>
+                      isActive
+                        ? { ...linkStyle, ...activeLinkStyle }
+                        : linkStyle
+                    }
                     className="nav-link"
                   >
                     {label}
