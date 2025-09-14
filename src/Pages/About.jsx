@@ -116,7 +116,7 @@ export default function About() {
               className="rounded-circle shadow"
               style={{ width: "150px", height: "150px", objectFit: "cover" }}
             />
-            <h5 className="mt-3" style={{ color: "#fff" }}>Wrushya shrunga G S</h5>
+            <h5 className="mt-3" style={{ color: "#fff" }}>Wrushya Shrungha G S</h5>
             <p style={{ color: "#ccc" }}>Director</p>
           </div>
         </div>

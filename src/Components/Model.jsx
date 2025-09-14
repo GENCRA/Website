@@ -75,7 +75,7 @@ export default function Model() {
               >
                 <ul>
                   <li>
-                    Deployed in{" "}
+                    Deployable in{" "}
                     <strong>schools, colleges, hospitals, and offices</strong>.
                   </li>
                   <li>
