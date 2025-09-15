@@ -13,7 +13,7 @@ export default function Contact() {
         {/* Google Form Embed */}
         <div className="rounded-2xl shadow-xl overflow-hidden bg-black p-3 md:p-4">
           <iframe
-            src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
+            src="https://forms.gle/kac2pow152gP7TbR7"
             width="100%"
             height="800"
             frameBorder="0"
