@@ -16,21 +16,22 @@ export default function Contact() {
         {/* Google Form */}
         <div className="mt-10">
           <div className="rounded-2xl shadow-xl overflow-hidden bg-black p-3 md:p-4">
-            <iframe
-              src="https://forms.gle/kac2pow152gP7TbR7"
-              width="100%"
-              height="750"
-              frameBorder="0"
-              title="Contact Form"
-              className="w-full rounded-lg"
-              style={{
-                backgroundColor: "black",
-                filter: "invert(1) hue-rotate(180deg)", // dark mode hack for Google Form
-              }}
-            >
-              Loading…
-            </iframe>
-          </div>
+  <iframe
+    src="https://forms.gle/kac2pow152gP7TbR7"
+    width="100%"
+    height="750"
+    frameBorder="0"
+    title="Contact Form"
+    className="w-full rounded-lg"
+    style={{
+      backgroundColor: "black",
+      filter: "invert(1) hue-rotate(180deg)", // optional dark mode hack
+    }}
+  >
+    Loading…
+  </iframe>
+</div>
+
         </div>
       </div>
     </section>
