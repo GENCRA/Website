@@ -1,10 +1,12 @@
 // src/Components/Navbar.jsx
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import Logo from "../assets/logo.png"; // Ensure logo exists
+import Logo from "../assets/logo.png";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false); // mobile menu state
+
   const linkStyle = {
     fontFamily: "Roboto, sans-serif",
     fontSize: "1.1rem",
@@ -18,16 +20,19 @@ export default function Navbar() {
     fontWeight: "700",
   };
 
-  // Close menu on link click (for mobile)
-  const closeMenu = () => {
-    const navMenu = document.getElementById("navMenu");
-    if (navMenu && navMenu.classList.contains("show")) {
-      const bsCollapse = new window.bootstrap.Collapse(navMenu, {
-        toggle: true,
-      });
-      bsCollapse.hide();
-    }
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
+
+  // Menu items with type: "hash" = in-page section, "route" = different page
+  const menuItems = [
+    { label: "Home", href: "/#home", type: "hash" },
+    { label: "About", href: "/#about", type: "hash" },
+    { label: "Features", href: "/features", type: "route" },
+    { label: "Models", href: "/#models", type: "hash" },
+    { label: "How It Works", href: "/#how-it-works", type: "hash" },
+    { label: "Gallery", href: "/gallery", type: "route" },
+    { label: "Contact", href: "/#contact", type: "hash" },
+  ];
 
   return (
     <nav
@@ -38,11 +43,11 @@ export default function Navbar() {
       }}
     >
       <div className="container d-flex align-items-center justify-content-between">
-        {/* Brand / Logo */}
+        {/* Logo / Brand */}
         <NavLink className="navbar-brand d-flex align-items-center" to="/" onClick={closeMenu}>
           <img
             src={Logo}
-            alt="Companion Robot Logo"
+            alt="GENCRA Logo"
             style={{
               height: "48px",
               width: "48px",
@@ -63,39 +68,37 @@ export default function Navbar() {
           </span>
         </NavLink>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle Button */}
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMenu"
-          aria-controls="navMenu"
-          aria-expanded="false"
+          onClick={toggleMenu}
+          aria-controls="navbarNav"
+          aria-expanded={isOpen}
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" style={{ filter: "invert(1)" }} />
+          <span
+            className="navbar-toggler-icon"
+            style={{ filter: "invert(1)" }}
+          />
         </button>
 
-        {/* Menu Links */}
-        <div className="collapse navbar-collapse" id="navMenu">
+        {/* Navbar Links */}
+        <div
+          className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
+          id="navbarNav"
+        >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
-            {[
-              ["Home", "/#home", true],
-              ["About", "/#about", true],
-              ["Features", "/features", false],
-              ["Models", "/#models", true],
-              ["How It Works", "/how-it-works", false],
-              ["Gallery", "/gallery", false],
-              ["Contact", "/contact", false],
-            ].map(([label, href, isHash]) => (
+            {menuItems.map(({ label, href, type }) => (
               <li className="nav-item mx-2" key={href}>
-                {isHash ? (
+                {type === "hash" ? (
                   <HashLink
                     smooth
                     to={href}
                     className="nav-link"
                     style={linkStyle}
-                    onClick={closeMenu} // auto-close on click
+                    scroll={el => el.scrollIntoView({ behavior: "smooth", block: "start" })}
+                    onClick={closeMenu}
                   >
                     {label}
                   </HashLink>
@@ -108,7 +111,7 @@ export default function Navbar() {
                         ? { ...linkStyle, ...activeLinkStyle }
                         : linkStyle
                     }
-                    onClick={closeMenu} // auto-close on click
+                    onClick={closeMenu}
                   >
                     {label}
                   </NavLink>
