@@ -1,5 +1,5 @@
 // src/Pages/Home.jsx
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense, useRef } from "react";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -10,17 +10,14 @@ import About from "./About";
 import HowItWorks from "./Howitworks";
 import Model from "../Components/Model";
 
-import {
-  FaInstagram,
-  FaFacebookF,
-  FaEnvelope,
-  FaPhoneAlt,
-} from "react-icons/fa";
+import { FaInstagram, FaFacebookF, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 
 // ✅ Lazy load Spline (heavy component)
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
 export default function Home() {
+  const splineRef = useRef(null); // store reference to Spline scene
+
   useEffect(() => {
     AOS.init({
       duration: 1200,
@@ -28,6 +25,20 @@ export default function Home() {
       once: true,
     });
   }, []);
+
+  // Optional: handle frame animation safely
+  const handleFrame = (spline) => {
+    if (!spline) return;
+    const cube = spline.findObjectByName("Cube"); // replace "Cube" with your node name
+    if (!cube) return; // skip if undefined
+    cube.position.x += 0.01; // example animation
+  };
+
+  const handleLoad = (spline) => {
+    splineRef.current = spline;
+    console.log("Spline scene loaded", spline);
+    // Access objects safely here if needed
+  };
 
   return (
     <div className="home-page" style={{ backgroundColor: "#000" }}>
@@ -85,7 +96,11 @@ export default function Home() {
                     </div>
                   }
                 >
-                  <Spline scene="https://prod.spline.design/NVMQW7I2bhkQEwg4/scene.splinecode" />
+                  <Spline
+                    scene="https://prod.spline.design/NVMQW7I2bhkQEwg4/scene.splinecode"
+                    onLoad={handleLoad}
+                    onFrame={handleFrame} // safe frame animation
+                  />
                 </Suspense>
               </div>
             </div>

@@ -10,22 +10,19 @@ export default function Contact() {
           Contact Us
         </h2>
 
-        {/* Google Form Embed */}
-        <div className="rounded-2xl shadow-xl overflow-hidden bg-black p-3 md:p-4">
-          <iframe
-            src="https://forms.gle/kac2pow152gP7TbR7"
-            width="100%"
-            height="800"
-            frameBorder="0"
-            title="Contact Form"
-            className="w-full rounded-lg min-h-[600px] md:min-h-[800px]"
-            style={{
-              backgroundColor: "black",
-              filter: "invert(1) hue-rotate(180deg)", // dark mode hack
-            }}
+        {/* Contact Card / Google Form Link */}
+        <div className="rounded-2xl shadow-xl overflow-hidden bg-gray-900 p-6 md:p-10">
+          <p className="text-white text-lg mb-6">
+            We’d love to hear from you! Please click the button below to fill out our contact form.
+          </p>
+          <a
+            href="https://forms.gle/kac2pow152gP7TbR7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
           >
-            Loading…
-          </iframe>
+            Open Contact Form
+          </a>
         </div>
       </div>
     </section>
