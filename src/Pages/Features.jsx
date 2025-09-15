@@ -50,18 +50,22 @@ const features = [
 
 function Features() {
   return (
-    <section className="py-20" style={{ backgroundColor: "#000", fontFamily: "'Poppins', sans-serif" }}>
+    <section
+      className="py-5 py-md-5"
+      style={{
+        backgroundColor: "#000",
+        fontFamily: "'Poppins', sans-serif",
+      }}
+    >
       <div className="container">
         {/* Section Heading */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-5" data-aos="fade-up">
           <h2
             className="fw-bold"
             style={{
               color: "#fff",
-              fontSize: "2.5rem",
-              letterSpacing: "-0.5px",
-              marginBottom: "0.5rem",
-              fontWeight: 700, // Bold heading
+              fontSize: "clamp(1.8rem, 2.5vw, 2.5rem)", // responsive
+              marginBottom: "0.75rem",
             }}
           >
             Unique Features
@@ -69,11 +73,10 @@ function Features() {
           <p
             style={{
               color: "#aaa",
-              fontSize: "1.15rem",
+              fontSize: "clamp(1rem, 1.2vw, 1.15rem)", // responsive
               maxWidth: "700px",
               margin: "0 auto",
               lineHeight: "1.6",
-              fontWeight: 400, // Normal body text
             }}
           >
             Discover how our AI companion integrates advanced technology with
@@ -84,7 +87,12 @@ function Features() {
         {/* Features Grid */}
         <div className="row g-4">
           {features.map((f, idx) => (
-            <div className="col-lg-4 col-md-6" key={idx}>
+            <div
+              className="col-lg-4 col-md-6"
+              key={idx}
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+            >
               <div
                 className="card h-100 border-0 rounded-4 shadow feature-card"
                 style={{
@@ -93,6 +101,7 @@ function Features() {
                   textAlign: "center",
                 }}
               >
+                {/* Icon */}
                 <div
                   className="d-flex align-items-center justify-content-center mb-4"
                   style={{
@@ -105,23 +114,25 @@ function Features() {
                 >
                   <f.icon size={34} style={{ color: f.color }} />
                 </div>
+
+                {/* Title */}
                 <h5
                   className="fw-semibold"
                   style={{
                     color: "#fff",
                     fontSize: "1.25rem",
-                    fontWeight: 600, // Medium
                   }}
                 >
                   {f.title}
                 </h5>
+
+                {/* Description */}
                 <p
                   style={{
                     color: "#d1d5db",
                     fontSize: "1rem",
                     marginTop: "0.75rem",
                     lineHeight: "1.5",
-                    fontWeight: 400, // Regular
                   }}
                 >
                   {f.desc}
@@ -138,8 +149,8 @@ function Features() {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .feature-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 15px 35px rgba(255, 255, 255, 0.08);
+          transform: translateY(-6px);
+          box-shadow: 0 12px 28px rgba(255, 255, 255, 0.08);
         }
       `}</style>
     </section>

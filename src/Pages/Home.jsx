@@ -1,15 +1,24 @@
 // src/Pages/Home.jsx
-import React, { useEffect } from "react";
-import CTA from "../Components/CTA";
-import Features from "../Pages/Features";
-import About from "../Pages/About";
-import HowItWorks from "../Pages/Howitworks"; // <-- import the new section
-import Model from "../Components/Model"; // Models component
-import Spline from "@splinetool/react-spline";
-import { FaInstagram, FaFacebookF, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import React, { useEffect, lazy, Suspense } from "react";
+import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Link } from "react-router-dom";
+
+import CTA from "../Components/CTA";
+import Features from "./Features";
+import About from "./About";
+import HowItWorks from "./Howitworks";
+import Model from "../Components/Model";
+
+import {
+  FaInstagram,
+  FaFacebookF,
+  FaEnvelope,
+  FaPhoneAlt,
+} from "react-icons/fa";
+
+// ✅ Lazy load Spline (heavy component)
+const Spline = lazy(() => import("@splinetool/react-spline"));
 
 export default function Home() {
   useEffect(() => {
@@ -27,13 +36,10 @@ export default function Home() {
         <div className="container">
           <div className="row align-items-center">
             {/* Text Content */}
-            <div className="col-md-6 hero-text" data-aos="fade-right">
-              <h1
-                className="display-4 fw-bold mb-3"
-                style={{ color: "#f8f9fa" }}
-              >
+            <div className="col-md-6 hero-text mb-4 mb-md-0" data-aos="fade-right">
+              <h1 className="display-5 fw-bold mb-3 text-white">
                 Your Friend. Your Listener.{" "}
-                <span style={{ color: "#319dcfff" }}>Your Companion.</span>
+                <span style={{ color: "#319dcf" }}>Your Companion.</span>
               </h1>
               <p className="lead mb-4" style={{ color: "#d1d1d1" }}>
                 An AI-powered companion robot designed to comfort, support, and
@@ -44,7 +50,6 @@ export default function Home() {
                 <Link
                   to="/how-it-works"
                   className="btn btn-primary btn-lg shadow hero-btn"
-                  style={{ marginRight: "0.5rem" }}
                 >
                   Meet Your Companion
                 </Link>
@@ -68,8 +73,20 @@ export default function Home() {
                 className="spline-wrapper rounded-4 shadow-lg overflow-hidden"
                 data-aos="zoom-in"
                 data-aos-delay="500"
+                style={{ minHeight: "300px" }}
               >
-                <Spline scene="https://prod.spline.design/NVMQW7I2bhkQEwg4/scene.splinecode" />
+                <Suspense
+                  fallback={
+                    <div
+                      className="d-flex align-items-center justify-content-center"
+                      style={{ height: "300px", color: "#fff" }}
+                    >
+                      Loading 3D Model...
+                    </div>
+                  }
+                >
+                  <Spline scene="https://prod.spline.design/NVMQW7I2bhkQEwg4/scene.splinecode" />
+                </Suspense>
               </div>
             </div>
           </div>
@@ -100,9 +117,7 @@ export default function Home() {
           data-aos="fade-up"
           data-aos-delay="700"
         >
-          <h2 className="fw-bold mb-4" style={{ color: "#eaeaea" }}>
-            About Us
-          </h2>
+          <h2 className="fw-bold mb-4 text-white">About Us</h2>
           <About />
         </div>
       </section>
@@ -114,9 +129,7 @@ export default function Home() {
           data-aos="fade-up"
           data-aos-delay="800"
         >
-          <h2 className="fw-bold mb-4" style={{ color: "#eaeaea" }}>
-            Take the First Step
-          </h2>
+          <h2 className="fw-bold mb-4 text-white">Take the First Step</h2>
           <CTA />
         </div>
       </section>

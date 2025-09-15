@@ -12,5 +12,16 @@ export default defineConfig({
   },
     optimizeDeps: {
     include: ["@splinetool/react-spline"],
+
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          physics: ["./src/assets/physics-ChHD2_fM.js"],
+          opentype: ["./src/assets/opentype-U-0Y99ve.js"],
+        },
+      },
+    },
   },
 })

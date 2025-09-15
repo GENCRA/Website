@@ -58,7 +58,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-sm text-gray-400">
-          © {new Date().getFullYear()} Gencra private limited. All rights reserved.
+          © {new Date().getFullYear()} Gencra private Limited. All rights reserved.
         </p>
       </div>
     </footer>
