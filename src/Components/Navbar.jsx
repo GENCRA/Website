@@ -31,7 +31,7 @@ export default function Navbar() {
     { label: "Models", href: "/#models", type: "hash" },
     { label: "How It Works", href: "/#how-it-works", type: "hash" },
     { label: "Gallery", href: "/gallery", type: "route" },
-    { label: "Contact", href: "/#contact", type: "hash" },
+    { label: "Contact", href: "/contact", type: "route" },
   ];
 
   return (
